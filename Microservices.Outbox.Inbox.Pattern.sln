@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Order.API\Order.API.csproj", "{EC63562F-66D3-4F78-9305-8D04ED693042}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.API", "Stock.API\Stock.API.csproj", "{ECB8E71A-F7BC-47EA-8ED2-87D1EB66C202}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{F630C51B-A94A-4B51-B78B-F984CCFDDE8D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC63562F-66D3-4F78-9305-8D04ED693042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC63562F-66D3-4F78-9305-8D04ED693042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC63562F-66D3-4F78-9305-8D04ED693042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC63562F-66D3-4F78-9305-8D04ED693042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB8E71A-F7BC-47EA-8ED2-87D1EB66C202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB8E71A-F7BC-47EA-8ED2-87D1EB66C202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB8E71A-F7BC-47EA-8ED2-87D1EB66C202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB8E71A-F7BC-47EA-8ED2-87D1EB66C202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F630C51B-A94A-4B51-B78B-F984CCFDDE8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F630C51B-A94A-4B51-B78B-F984CCFDDE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F630C51B-A94A-4B51-B78B-F984CCFDDE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F630C51B-A94A-4B51-B78B-F984CCFDDE8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
