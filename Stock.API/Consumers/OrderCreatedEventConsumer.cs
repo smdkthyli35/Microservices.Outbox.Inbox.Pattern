@@ -19,15 +19,6 @@ namespace Stock.API.Consumers
 
             await stockDbContext.OrderInboxes.AddAsync(orderInbox);
             await stockDbContext.SaveChangesAsync();
-
-            List<OrderInbox> orderInboxes = await stockDbContext.OrderInboxes.Where(x => x.Processed == false).ToListAsync();
-            foreach (var ordInbox in orderInboxes)
-            {
-                OrderCreatedEvent? orderCreatedEvent = JsonSerializer.Deserialize<OrderCreatedEvent>(ordInbox.Payload);
-                await Console.Out.WriteLineAsync($"{orderCreatedEvent.OrderId} order id değerine sahip olan siparişin stok işlemleri tamamlandı.");
-                ordInbox.Processed = true;
-                await stockDbContext.SaveChangesAsync();
-            }
         }
     }
 }
