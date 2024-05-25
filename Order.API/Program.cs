@@ -1,8 +1,10 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Order.API.Models.Contexts;
+using Order.API.Models.Entities;
 using Order.API.ViewModels;
 using Shared.Events;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +56,21 @@ app.MapPost("/create-order", async (CreateOrderVM model, OrderDbContext orderDbC
             ProductId = oi.ProductId
         }).ToList()
     };
+
+    #region Outbox Pattern Çalýþmasý
+
+    OrderOutbox orderOutbox = new()
+    {
+        OccuredOn = DateTime.UtcNow,
+        ProcessedDate = null,
+        Payload = JsonSerializer.Serialize(orderCreatedEvent),
+        Type = orderCreatedEvent.GetType().Name
+    };
+
+    await orderDbContext.OrderOutboxes.AddAsync(orderOutbox);
+    await orderDbContext.SaveChangesAsync();
+
+    #endregion
 });
 
 app.UseSwagger();
