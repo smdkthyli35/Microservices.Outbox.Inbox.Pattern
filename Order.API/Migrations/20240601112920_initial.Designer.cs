@@ -12,7 +12,7 @@ using Order.API.Models.Contexts;
 namespace Order.API.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20240525121451_initial")]
+    [Migration("20240601112920_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -76,11 +76,9 @@ namespace Order.API.Migrations
 
             modelBuilder.Entity("Order.API.Models.Entities.OrderOutbox", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("IdempotentToken")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("OccuredOn")
                         .HasColumnType("datetime2");
@@ -96,7 +94,7 @@ namespace Order.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdempotentToken");
 
                     b.ToTable("OrderOutboxes");
                 });
