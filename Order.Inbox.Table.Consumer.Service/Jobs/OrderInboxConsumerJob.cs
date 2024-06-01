@@ -29,7 +29,7 @@ namespace Order.Inbox.Table.Consumer.Service.Jobs
                     if (orderCreatedEvent is not null)
                     {
                         await OrderInboxSingletonDatabase.ExecuteAsync(
-                            $"UPDATE ORDERINBOXES SET PROCESSED = 1 WHERE ID = '{orderInbox.Id}'");
+                            $"UPDATE ORDERINBOXES SET PROCESSED = 1 WHERE IDEMPOTENTTOKEN = '{orderInbox.IdempotentToken}'");
                     }
                 }
 

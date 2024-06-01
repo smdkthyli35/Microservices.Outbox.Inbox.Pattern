@@ -44,11 +44,14 @@ app.MapPost("/create-order", async (CreateOrderVM model, OrderDbContext orderDbC
     await orderDbContext.Orders.AddAsync(order);
     await orderDbContext.SaveChangesAsync();
 
+    Guid idempotentToken = Guid.NewGuid();
+
     OrderCreatedEvent orderCreatedEvent = new()
     {
         BuyerId = order.BuyerId,
         OrderId = order.Id,
         TotalPrice = model.OrderItems.Sum(oi => oi.Count * oi.Price),
+        IdempotentToken = idempotentToken,
         OrderItems = model.OrderItems.Select(oi => new Shared.Datas.OrderItem
         {
             Price = oi.Price,
@@ -64,7 +67,8 @@ app.MapPost("/create-order", async (CreateOrderVM model, OrderDbContext orderDbC
         OccuredOn = DateTime.UtcNow,
         ProcessedDate = null,
         Payload = JsonSerializer.Serialize(orderCreatedEvent),
-        Type = orderCreatedEvent.GetType().Name
+        Type = orderCreatedEvent.GetType().Name,
+        IdempotentToken = idempotentToken
     };
 
     await orderDbContext.OrderOutboxes.AddAsync(orderOutbox);

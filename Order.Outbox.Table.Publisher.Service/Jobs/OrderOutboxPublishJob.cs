@@ -32,7 +32,7 @@ namespace Order.Outbox.Table.Publisher.Service.Jobs
                         {
                             await publishEndpoint.Publish(orderCreatedEvent);
                             await OrderOutboxSingletonDatabase.ExecuteAsync(
-                                $"UPDATE ORDEROUTBOXES SET PROCESSEDDATE = GETDATE() WHERE ID = '{orderOutbox.Id}'");
+                                $"UPDATE ORDEROUTBOXES SET PROCESSEDDATE = GETDATE() WHERE IDEMPOTENTTOKEN = '{orderOutbox.IdempotentToken}'");
                         }
                     }
                 }
