@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Order.Outbox.Table.Publisher.Service
 {
-    public class OrderOutboxSingletonDatabase
+    public static class OrderOutboxSingletonDatabase
     {
         static IDbConnection _connection;
         static bool _dataReaderState = true;

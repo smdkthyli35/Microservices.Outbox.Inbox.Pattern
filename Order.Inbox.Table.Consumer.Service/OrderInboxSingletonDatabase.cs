@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Order.Inbox.Table.Consumer.Service
 {
-    public class OrderInboxSingletonDatabase
+    public static class OrderInboxSingletonDatabase
     {
         static IDbConnection _connection;
         static bool _dataReaderState = true;
